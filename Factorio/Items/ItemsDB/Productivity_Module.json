@@ -1,0 +1,103 @@
+{
+  "AmountCrafted": 1,
+  "AmountPerSec": 0.067,
+  "Id": "Productivity_Module",
+  "Ingredients": [
+    {
+      "AmountNeeded": 5,
+      "TimeToCraftMainItem": 15.0,
+      "AmountNeededPerSecond": 0.333,
+      "Item": {
+        "TimeToCraft": 6.0,
+        "Name": "Advanced Circuit",
+        "AmountCrafted": 1,
+        "Ingredients": [
+          {
+            "AmountNeeded": 2,
+            "TimeToCraftMainItem": 6.0,
+            "AmountNeededPerSecond": 0.333,
+            "Item": {
+              "TimeToCraft": 0.5,
+              "Name": "Electronic Circuit",
+              "AmountCrafted": 1,
+              "Ingredients": [
+                {
+                  "AmountNeeded": 3,
+                  "TimeToCraftMainItem": 0.5,
+                  "AmountNeededPerSecond": 6.0,
+                  "Item": {
+                    "TimeToCraft": 0.5,
+                    "Name": "Copper Cable",
+                    "AmountCrafted": 2,
+                    "Ingredients": [],
+                    "AmountPerSec": 4.0,
+                    "Id": "Copper_Cable"
+                  }
+                }
+              ],
+              "AmountPerSec": 2.0,
+              "Id": "Electronic_Circuit"
+            }
+          },
+          {
+            "AmountNeeded": 2,
+            "TimeToCraftMainItem": 6.0,
+            "AmountNeededPerSecond": 0.333,
+            "Item": {
+              "TimeToCraft": 1.0,
+              "Name": "Plastic",
+              "AmountCrafted": 2,
+              "Ingredients": [],
+              "AmountPerSec": 2.0,
+              "Id": "Plastic"
+            }
+          },
+          {
+            "AmountNeeded": 4,
+            "TimeToCraftMainItem": 6.0,
+            "AmountNeededPerSecond": 0.667,
+            "Item": {
+              "TimeToCraft": 0.5,
+              "Name": "Copper Cable",
+              "AmountCrafted": 2,
+              "Ingredients": [],
+              "AmountPerSec": 4.0,
+              "Id": "Copper_Cable"
+            }
+          }
+        ],
+        "AmountPerSec": 0.167,
+        "Id": "Advanced_Circuit"
+      }
+    },
+    {
+      "AmountNeeded": 5,
+      "TimeToCraftMainItem": 15.0,
+      "AmountNeededPerSecond": 0.333,
+      "Item": {
+        "TimeToCraft": 0.5,
+        "Name": "Electronic Circuit",
+        "AmountCrafted": 1,
+        "Ingredients": [
+          {
+            "AmountNeeded": 3,
+            "TimeToCraftMainItem": 0.5,
+            "AmountNeededPerSecond": 6.0,
+            "Item": {
+              "TimeToCraft": 0.5,
+              "Name": "Copper Cable",
+              "AmountCrafted": 2,
+              "Ingredients": [],
+              "AmountPerSec": 4.0,
+              "Id": "Copper_Cable"
+            }
+          }
+        ],
+        "AmountPerSec": 2.0,
+        "Id": "Electronic_Circuit"
+      }
+    }
+  ],
+  "Name": "Productivity Module",
+  "TimeToCraft": 15.0
+}
