@@ -6,9 +6,11 @@
         mc:Ignorable="d"
         xmlns:local="using:Factorio">
 
-        <Grid>
-            <Frame Name="MainFrame"/>
-        </Grid>
+
+    <Grid>
+
+        <Frame Name="MainFrame"/>
+    </Grid>
 
 
 </Window>

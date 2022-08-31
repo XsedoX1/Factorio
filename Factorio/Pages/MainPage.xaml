@@ -7,6 +7,15 @@
       xmlns:items="clr-namespace:Factorio.Items"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <TeachingTip x:Name="NothingToCalculateTip"
+                     Title="Nothing to calculate"
+                     PreferredPlacement="BottomLeft">
+            <TeachingTip.IconSource>
+                <SymbolIconSource Symbol="Help"></SymbolIconSource>
+            </TeachingTip.IconSource>
+        </TeachingTip>
+    </Page.Resources>
 
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
@@ -29,7 +38,8 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock VerticalAlignment="Center" Grid.Column="0" FontWeight="Bold" Text="{Binding Name}" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Name="ListViewElement" VerticalAlignment="Center" Grid.Column="0" FontWeight="Bold" Text="{Binding Name}" HorizontalAlignment="Left"/>
+
                             <Button Click="Edit_Button" Grid.Column="1" Content="Edit" HorizontalAlignment="Right"></Button>
                             <Button Grid.Column="2" Margin="10,0,0,0"  Content="Delete" HorizontalAlignment="Right">
                                 <Button.Flyout>

@@ -21,8 +21,8 @@ public static class MainPageListViewController
     public static void RemoveItem(Item item)
     {
         ListOfItems.Remove(item);
-        if (File.Exists(Constants.PROJECT_DIR + "Items/ItemsDB/" + item.Id + ".json"))
-            File.Delete(Constants.PROJECT_DIR + "Items/ItemsDB/" + item.Id + ".json");
+        if (File.Exists(Constants.PROJECT_DIR + "Data/ItemsDB/" + item.Id + ".json"))
+            File.Delete(Constants.PROJECT_DIR + "Data/ItemsDB/" + item.Id + ".json");
 
     }
 

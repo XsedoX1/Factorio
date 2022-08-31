@@ -42,6 +42,11 @@ namespace Factorio.Pages
             Item clickedItem = e.ClickedItem as Item;
             if(clickedItem.Ingredients.Count >0)
                 this.Frame.Navigate(typeof(ItemInfoPage), clickedItem);
+            else
+            {
+                NothingToCalculateTip.Subtitle = clickedItem.Name + " has no ingredients.";
+                NothingToCalculateTip.IsOpen = true;
+            }
         }
     }
 }

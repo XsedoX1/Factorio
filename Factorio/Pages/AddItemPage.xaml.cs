@@ -2,13 +2,10 @@
 using Factorio.Logic;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Factorio.Pages
 {
+
 
     public sealed partial class AddItemPage : Page
     {
@@ -31,11 +28,12 @@ namespace Factorio.Pages
             AvailableItemsComboBox.ItemsSource = AddItemPageListViewController.ListOfAvailableItems;
             AddedIngredients.ItemsSource = AddItemPageListViewController.ListOfIngredients;
 
-            if(e.Parameter is Item)
+            if (e.Parameter is Item)
             {
                 Item item = e.Parameter as Item;
 
-                foreach(var ingredient in item.Ingredients)
+
+                foreach (var ingredient in item.Ingredients)
                 {
                     AddItemPageListViewController.ListOfIngredients.Add(ingredient);
                     AddItemPageListViewController.ListOfAvailableItems.Remove(ingredient.Item);
@@ -49,26 +47,30 @@ namespace Factorio.Pages
 
         }
 
+
         private void Add_button(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            AddItemPageListViewController.Add_Button(AvailableItemsComboBox.SelectedItem as Item,
-                Int32.Parse(ItemAmountBox.Text),
-                Convert.ToDouble(TimeBox.Text));
-            ItemAmountBox.Text = "";
-        }
-
-        private void OnlyNumbers(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
-        {
-
-            args.Cancel = args.NewText.Any(c =>
+            if (!int.TryParse((ItemAmountBox.Text), out int AmountNeededInt) || string.IsNullOrEmpty(ItemAmountBox.Text))
             {
-                if (c.Equals('.') || char.IsDigit(c))
-                    return false;
-                else
-                    return true;
-            });
-
+                IngredientAmountBoxTip.IsOpen = true;
+            }
+            else if (!double.TryParse(TimeBox.Text, out double time) || string.IsNullOrEmpty(TimeBox.Text))
+            {
+                TimeBoxTip.IsOpen = true;
+            }
+            else if (AvailableItemsComboBox.SelectedIndex == -1)
+            {
+                ComboBoxTip.IsOpen = true;
+            }
+            else
+            {
+                AddItemPageListViewController.Add_Button(AvailableItemsComboBox.SelectedItem as Item,
+                                AmountNeededInt,
+                                time);
+                ItemAmountBox.Text = "";
+            }
         }
+
 
         private void Remove_Ingredient_Button(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
@@ -81,11 +83,27 @@ namespace Factorio.Pages
         private void Add_Whole_Item_Button(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
 
-            Item item = new Item(NameBox.Text, Convert.ToDouble(TimeBox.Text), Int32.Parse(AmountCraftedBox.Text), AddItemPageListViewController.ListOfIngredients);
+            if (string.IsNullOrEmpty(NameBox.Text))
+            {
+                NameBoxTip.IsOpen = true;
+            }
+            else if (!int.TryParse((AmountCraftedBox.Text), out int AmountCraftedInt) || string.IsNullOrEmpty(AmountCraftedBox.Text))
+            {
+                AmountCraftedBoxTip.IsOpen = true;
+            }
+            else if (!double.TryParse(TimeBox.Text, out double time) || string.IsNullOrEmpty(TimeBox.Text))
+            {
+                TimeBoxTip.IsOpen = true;
+            }
+            else
+            {
+                Item item = new Item(NameBox.Text, time, AmountCraftedInt, AddItemPageListViewController.ListOfIngredients);
 
-            MainPageListViewController.AddEdit_Whole_Item(item);
-            
-            this.Frame.GoBack();
+                MainPageListViewController.AddEdit_Whole_Item(item);
+
+                this.Frame.GoBack();
+
+            }
         }
     }
 }

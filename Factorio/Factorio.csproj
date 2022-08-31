@@ -11,6 +11,12 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Items\ItemsDB\**" />
+    <EmbeddedResource Remove="Items\ItemsDB\**" />
+    <None Remove="Items\ItemsDB\**" />
+    <Page Remove="Items\ItemsDB\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -50,8 +56,8 @@
   <ItemGroup>
     <None Remove="Pages\ItemInfoPage.xaml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Items\ItemsDB\" />
-  </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ItemGroup>
+    <PRIResource Remove="Items\ItemsDB\**" />
+  </ItemGroup>
 </Project>

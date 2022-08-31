@@ -2,25 +2,14 @@
 using Factorio.Logic;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Xml.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 
 
 namespace Factorio.Pages
-{ 
+{
     public sealed partial class ItemInfoPage : Page
     {
         public Item Item { get; set; }
@@ -40,30 +29,43 @@ namespace Factorio.Pages
             ItemPerSec.Text = Item.Name + "/s";
         }
 
-        private void Go_Back(object sender, RoutedEventArgs e) 
+        private void Go_Back(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
         }
 
         private void CalculateListView()
         {
-            if (string.IsNullOrEmpty(TargetAmountPerSecond.Text)) return;
-            foreach (var element in ListViewElements)
+            if (!double.TryParse(TargetAmountPerSecond.Text, out double targetAmountPerSec) || string.IsNullOrEmpty(TargetAmountPerSecond.Text))
             {
-                element.MachinesNeeded = Math.Round(element.AmountNeededCombined / element.Item.AmountPerSec / craftingMultiplier * Convert.ToDouble(TargetAmountPerSecond.Text), 2, MidpointRounding.AwayFromZero);
-                element.ItemNeededPerSec = Math.Round(element.AmountNeededCombined/Item.TimeToCraft * Convert.ToDouble(TargetAmountPerSecond.Text), 2, MidpointRounding.AwayFromZero);
+                AmountPerSecBoxTip.IsOpen = true;
+            }
+            else if (ChangeMachine.SelectedIndex == -1)
+            {
+                ChangeMachineTip.IsOpen = true;  
+            }
+            else
+            {
+                foreach (var element in ListViewElements)
+                {
+                    element.MachinesNeeded = Math.Round(element.AmountNeededCombined / element.Item.AmountPerSec / craftingMultiplier * targetAmountPerSec, 2, MidpointRounding.AwayFromZero);
+                    element.ItemNeededPerSec = Math.Round(element.AmountNeededCombined / Item.TimeToCraft * targetAmountPerSec, 2, MidpointRounding.AwayFromZero);
+                }
+                ItemInfoListView.ItemsSource = ListViewElements;
             }
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             CalculateListView();
-            ItemInfoListView.ItemsSource = ListViewElements;
         }
 
         private void ChangeMachine_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(sender is RadioButtons rb)
+            if (!double.TryParse(TargetAmountPerSecond.Text, out double _) || string.IsNullOrEmpty(TargetAmountPerSecond.Text))
+                return;
+
+            if (sender is RadioButtons rb)
             {
                 string craftingMetchod = rb.SelectedItem as string;
 
@@ -89,5 +91,5 @@ namespace Factorio.Pages
         }
     }
 
-   
+
 }
