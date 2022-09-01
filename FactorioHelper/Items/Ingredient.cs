@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Factorio.Items;
+namespace FactorioHelper.Items;
 
 public class Ingredient : IEquatable<Ingredient>
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Factorio.Data;
+namespace FactorioHelper.Data;
 
 public static class Constants
 {

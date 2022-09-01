@@ -1,11 +1,11 @@
-﻿using Factorio.Data;
-using Factorio.Items;
+﻿using FactorioHelper.Data;
+using FactorioHelper.Items;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 using System.IO;
 
-namespace Factorio.Logic;
+namespace FactorioHelper.Logic;
 
 public static class MainPageListViewController
 {

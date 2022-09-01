@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.UI.Xaml.Controls;
-using Factorio.Items;
-using Factorio.Logic;
+using FactorioHelper.Items;
+using FactorioHelper.Logic;
 using Microsoft.UI.Xaml;
 using System.Linq;
 
-namespace Factorio.Pages
+namespace FactorioHelper.Pages
 {
     public sealed partial class MainPage : Page
     {

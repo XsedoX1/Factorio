@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
-namespace Factorio.Items
+namespace FactorioHelper.Items
 {
     public class Item : IEquatable<Item>
     {

@@ -1,29 +1,37 @@
-﻿using Factorio.Data;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml.Shapes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
 
-namespace Factorio
-{
-    public sealed partial class MainWindow : Window
-    {  
 
-        public MainWindow()
+namespace FactorioHelper
+{
+    public partial class App : Application
+    {
+        private Window main_window;
+        public App()
         {
             this.InitializeComponent();
-            MainFrame.Navigate(typeof(Pages.MainPage));
+        }
+
+        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        {
+            main_window = new MainWindow();
+            main_window.Activate();
         }
     }
 }

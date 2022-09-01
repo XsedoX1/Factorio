@@ -1,9 +1,9 @@
-﻿using Factorio.Items;
-using Factorio.Logic;
+﻿using FactorioHelper.Items;
+using FactorioHelper.Logic;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
-namespace Factorio.Pages
+namespace FactorioHelper.Pages
 {
 
 

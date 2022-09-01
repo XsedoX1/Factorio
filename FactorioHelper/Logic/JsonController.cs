@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using Factorio.Items;
+using FactorioHelper.Items;
 using Newtonsoft.Json;
-using Constants = Factorio.Data.Constants;
+using Constants = FactorioHelper.Data.Constants;
 
-namespace Factorio.Logic;
+namespace FactorioHelper.Logic;
 
 public static class JsonController
 {

@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "Factorio (Package)": {
+    "FactorioHelper (Package)": {
       "commandName": "MsixPackage"
     },
-    "Factorio (Unpackaged)": {
+    "FactorioHelper (Unpackaged)": {
       "commandName": "Project"
     }
   }

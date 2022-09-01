@@ -1,8 +1,8 @@
-﻿using Factorio.Items;
+﻿using FactorioHelper.Items;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 
-namespace Factorio.Logic
+namespace FactorioHelper.Logic
 {
 
     public static class AddItemPageListViewController

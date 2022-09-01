@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="b3c98269-f5b7-4f90-b71e-6d642e7c3ba4"
+    Name="FactorioHelperPackage"
     Publisher="CN=sjule"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>Factorio</DisplayName>
-    <PublisherDisplayName>sjule</PublisherDisplayName>
+    <DisplayName>FactorioHelper</DisplayName>
+    <PublisherDisplayName>Juliusz Sadowski</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -31,7 +31,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Factorio"
+        DisplayName="FactorioHelper"
         Description="Factorio"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"

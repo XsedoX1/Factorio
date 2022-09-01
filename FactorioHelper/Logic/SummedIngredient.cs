@@ -1,4 +1,4 @@
-﻿using Factorio.Items;
+﻿using FactorioHelper.Items;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Factorio.Logic
+namespace FactorioHelper.Logic
 {
     public class SummedIngredient : IEquatable<SummedIngredient>, INotifyPropertyChanged
     {
