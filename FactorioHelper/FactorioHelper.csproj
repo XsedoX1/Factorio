@@ -18,15 +18,17 @@
 	<NeutralLanguage>en-001</NeutralLanguage>
 	<StartupObject>FactorioHelper.Program</StartupObject>
 	<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-	<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+	<AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
 	<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
 	<GenerateTestArtifacts>True</GenerateTestArtifacts>
 	<AppxBundle>Never</AppxBundle>
 	<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-	<PackageCertificateThumbprint>4996E907616A8D89A8BC56E5841DF64CFE3882E8</PackageCertificateThumbprint>
 	<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
 	<Configurations>Debug;Release;deploy</Configurations>
+	<DefaultLanguage>EN-US</DefaultLanguage>
+	<AppInstallerUri>D:\Package</AppInstallerUri>
+	<PackageCertificateKeyFile>FactorioHelper_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Items\ItemsDB\**" />
