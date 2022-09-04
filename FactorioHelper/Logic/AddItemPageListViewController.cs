@@ -1,5 +1,4 @@
 ﻿using FactorioHelper.Items;
-using Microsoft.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 
 namespace FactorioHelper.Logic

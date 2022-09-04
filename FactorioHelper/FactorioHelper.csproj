@@ -14,6 +14,21 @@
 	<PublishReadyToRun>true</PublishReadyToRun>
 	<Title>FactorioHelper</Title>
 	<SignAssembly>False</SignAssembly>
+	<Authors>Juliusz Sadowski</Authors>
+	<NeutralLanguage>en-001</NeutralLanguage>
+	<StartupObject>FactorioHelper.Program</StartupObject>
+	<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+	<AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+	<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+	<GenerateTestArtifacts>True</GenerateTestArtifacts>
+	<AppxBundle>Never</AppxBundle>
+	<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+	<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+	<Configurations>Debug;Release;deploy</Configurations>
+	<DefaultLanguage>EN-US</DefaultLanguage>
+	<AppInstallerUri>D:\Package</AppInstallerUri>
+	<PackageCertificateKeyFile>FactorioHelper_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Items\ItemsDB\**" />
@@ -28,7 +43,6 @@
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
 
@@ -57,10 +71,38 @@
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\BadgeLogo.scale-100.png" />
+    <None Remove="Assets\BadgeLogo.scale-125.png" />
+    <None Remove="Assets\BadgeLogo.scale-150.png" />
+    <None Remove="Assets\BadgeLogo.scale-200.png" />
+    <None Remove="Assets\BadgeLogo.scale-400.png" />
+    <None Remove="Assets\mainLogo.scale-100.png" />
+    <None Remove="Assets\mainLogo.scale-125.png" />
+    <None Remove="Assets\mainLogo.scale-150.png" />
+    <None Remove="Assets\mainLogo.scale-200.png" />
+    <None Remove="Assets\mainLogo.scale-400.png" />
+    <None Remove="Assets\mainLogo.targetsize-16.png" />
+    <None Remove="Assets\mainLogo.targetsize-24.png" />
+    <None Remove="Assets\mainLogo.targetsize-256.png" />
+    <None Remove="Assets\mainLogo.targetsize-32.png" />
+    <None Remove="Assets\mainLogo.targetsize-48.png" />
+    <None Remove="Assets\Square44x44Logo.targetsize-256.png" />
     <None Remove="Pages\ItemInfoPage.xaml" />
   </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
   <ItemGroup>
     <PRIResource Remove="Items\ItemsDB\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\mainLogo.altform-lightunplated_targetsize-16.png" />
+    <Content Remove="Assets\mainLogo.altform-lightunplated_targetsize-24.png" />
+    <Content Remove="Assets\mainLogo.altform-lightunplated_targetsize-256.png" />
+    <Content Remove="Assets\mainLogo.altform-lightunplated_targetsize-32.png" />
+    <Content Remove="Assets\mainLogo.altform-lightunplated_targetsize-48.png" />
+    <Content Remove="Assets\mainLogo.altform-unplated_targetsize-16.png" />
+    <Content Remove="Assets\mainLogo.altform-unplated_targetsize-24.png" />
+    <Content Remove="Assets\mainLogo.altform-unplated_targetsize-256.png" />
+    <Content Remove="Assets\mainLogo.altform-unplated_targetsize-32.png" />
+    <Content Remove="Assets\mainLogo.altform-unplated_targetsize-48.png" />
   </ItemGroup>
 </Project>

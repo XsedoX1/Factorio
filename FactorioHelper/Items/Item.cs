@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
@@ -35,15 +34,15 @@ namespace FactorioHelper.Items
         public bool Equals(Item other)
         {
             if (other == null) return false;
-            if(Object.ReferenceEquals(this, other)) return true;
-            if(this.GetType() != other.GetType()) return false;
+            if (Object.ReferenceEquals(this, other)) return true;
+            if (this.GetType() != other.GetType()) return false;
 
-            return (Id == other.Id) && (AmountCrafted == other.AmountCrafted) && (TimeToCraft==other.TimeToCraft);
+            return (Id == other.Id) && (AmountCrafted == other.AmountCrafted) && (TimeToCraft == other.TimeToCraft);
         }
 
         public static bool operator ==(Item left, Item right)
         {
-            if(left is null)
+            if (left is null)
             {
                 if (right is null)
                     return true;
@@ -55,6 +54,6 @@ namespace FactorioHelper.Items
         }
 
         public static bool operator !=(Item left, Item right) => !(left == right);
-        
+
     }
 }

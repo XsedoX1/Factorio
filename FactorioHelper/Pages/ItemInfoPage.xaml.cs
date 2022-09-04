@@ -42,7 +42,7 @@ namespace FactorioHelper.Pages
             }
             else if (ChangeMachine.SelectedIndex == -1)
             {
-                ChangeMachineTip.IsOpen = true;  
+                ChangeMachineTip.IsOpen = true;
             }
             else
             {
