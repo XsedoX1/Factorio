@@ -36,6 +36,7 @@ namespace FactorioHelper.Pages
 
         private void CalculateListView()
         {
+            
             if (!double.TryParse(TargetAmountPerSecond.Text, out double targetAmountPerSec) || string.IsNullOrEmpty(TargetAmountPerSecond.Text))
             {
                 AmountPerSecBoxTip.IsOpen = true;
@@ -46,12 +47,15 @@ namespace FactorioHelper.Pages
             }
             else
             {
+                double allMachinesCombined = targetAmountPerSec/Item.AmountPerSec/craftingMultiplier;
                 foreach (var element in ListViewElements)
                 {
                     element.MachinesNeeded = Math.Round(element.AmountNeededCombined / element.Item.AmountPerSec / craftingMultiplier * targetAmountPerSec, 2, MidpointRounding.AwayFromZero);
                     element.ItemNeededPerSec = Math.Round(element.AmountNeededCombined / Item.TimeToCraft * targetAmountPerSec, 2, MidpointRounding.AwayFromZero);
+                    allMachinesCombined += element.MachinesNeeded;
                 }
                 ItemInfoListView.ItemsSource = ListViewElements;
+                AllMachines.Text = allMachinesCombined.ToString();
             }
         }
 

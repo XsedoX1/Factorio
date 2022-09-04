@@ -171,7 +171,7 @@
                 </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,5,0,5">
+                        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="0,5,0,5">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
