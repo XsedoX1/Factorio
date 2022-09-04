@@ -1,1 +1,0 @@
-{"TimeToCraft":0.5,"Name":"Electronic Circuit","AmountCrafted":1,"Ingredients":[{"AmountNeeded":3,"TimeToCraftMainItem":0.5,"AmountNeededPerSecond":6.0,"Item":{"TimeToCraft":0.5,"Name":"Copper Cable","AmountCrafted":2,"Ingredients":[],"AmountPerSec":4.0,"Id":"Copper_Cable"}}],"AmountPerSec":2.0,"Id":"Electronic_Circuit"}
