@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using Microsoft.UI.Xaml.Controls;
-using FactorioHelper.Items;
+﻿using FactorioHelper.Items;
 using FactorioHelper.Logic;
 using Microsoft.UI.Xaml;
-using System.Linq;
+using Microsoft.UI.Xaml.Controls;
 
 namespace FactorioHelper.Pages
 {
@@ -40,7 +36,7 @@ namespace FactorioHelper.Pages
         private void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             Item clickedItem = e.ClickedItem as Item;
-            if(clickedItem.Ingredients.Count >0)
+            if (clickedItem.Ingredients.Count > 0)
                 this.Frame.Navigate(typeof(ItemInfoPage), clickedItem);
             else
             {

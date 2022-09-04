@@ -1,10 +1,6 @@
 ﻿using FactorioHelper.Items;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FactorioHelper.Logic
 {
@@ -75,12 +71,12 @@ namespace FactorioHelper.Logic
 
         }
 
-        private void NotifyPropertyChanged(String propertyName="")
+        private void NotifyPropertyChanged(String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+
 
         public static bool operator !=(SummedIngredient left, SummedIngredient right) => !(left == right);
     }

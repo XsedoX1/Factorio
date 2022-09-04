@@ -6,10 +6,10 @@ namespace FactorioHelper.Items;
 public class Ingredient : IEquatable<Ingredient>
 {
     public int AmountNeeded { get; }
-    
+
     public double TimeToCraftMainItem { get; private set; }
 
-    public double  AmountNeededPerSecond { get; }
+    public double AmountNeededPerSecond { get; }
 
     public Item Item { get; }
 
@@ -40,7 +40,7 @@ public class Ingredient : IEquatable<Ingredient>
 
     public static bool operator ==(Ingredient left, Ingredient right)
     {
-        if(left is null)
+        if (left is null)
         {
             if (right is null) return true;
             return false;
