@@ -1,7 +1,10 @@
-﻿using FactorioHelper.Items;
+﻿using FactorioHelper.Data;
+using FactorioHelper.Items;
 using FactorioHelper.Logic;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System;
+using Windows.Storage.Pickers;
 
 namespace FactorioHelper.Pages
 {
@@ -11,6 +14,8 @@ namespace FactorioHelper.Pages
         public MainPage()
         {
             InitializeComponent();
+
+            itemsPathBox.Text = Settings.Path;
 
             MainPageListViewController.Updater();
             MainListView.ItemsSource = MainPageListViewController.ListOfItems;
@@ -43,6 +48,25 @@ namespace FactorioHelper.Pages
                 NothingToCalculateTip.Subtitle = clickedItem.Name + " has no ingredients.";
                 NothingToCalculateTip.IsOpen = true;
             }
+        }
+
+        private async void Set_Directory_Button(object sender, RoutedEventArgs e)
+        {
+            var folderPicker = new FolderPicker();
+            folderPicker.FileTypeFilter.Add("*");
+            var window = (Application.Current as App)?.Window as MainWindow;
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, hwnd);
+            folderPicker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+
+            Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if(folder!=null)
+            {
+                Settings.Path = folder.Path;
+                itemsPathBox.Text = Settings.Path;
+            }
+
         }
     }
 }

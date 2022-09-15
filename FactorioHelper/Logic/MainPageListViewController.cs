@@ -15,14 +15,14 @@ public static class MainPageListViewController
     public static void Updater()
     {
         ListOfItems.Clear();
-        ListOfItems = JsonController.Deserializer();
+        ListOfItems = JsonController.DeserializeItems();
     }
 
     public static void RemoveItem(Item item)
     {
         ListOfItems.Remove(item);
-        if (File.Exists(Constants.PROJECT_DIR + "ItemsDB/" + item.Id + ".json"))
-            File.Delete(Constants.PROJECT_DIR + "ItemsDB/" + item.Id + ".json");
+        if (File.Exists(Settings.Path + item.Id + ".json"))
+            File.Delete(Settings.Path + item.Id + ".json");
 
     }
 
@@ -39,6 +39,6 @@ public static class MainPageListViewController
         RemoveItem(item);
         ListOfItems.Add(item);
 
-        JsonController.Serializer(item);
+        JsonController.SerializeItem(item);
     }
 }

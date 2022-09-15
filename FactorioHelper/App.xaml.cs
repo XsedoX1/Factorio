@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using FactorioHelper.Data;
+using Microsoft.UI.Xaml;
 
 
 
@@ -6,16 +7,19 @@ namespace FactorioHelper
 {
     public partial class App : Application
     {
-        private Window main_window;
+        public Window Window { get; set; }
         public App()
         {
             this.InitializeComponent();
+            if (Settings.Path is null)
+                Settings.Path = Constants.PROJECT_DIR;
         }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            main_window = new MainWindow();
-            main_window.Activate();
+            Window = new MainWindow();
+            Window.Activate();
+            
         }
     }
 }

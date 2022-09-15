@@ -9,7 +9,6 @@ public static class Constants
 {
     public static string PROJECT_DIR
     {
-
         get
         {
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;

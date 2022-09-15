@@ -27,6 +27,7 @@ namespace FactorioHelper.Pages
             TitleItem.Text = Item.Name;
             ItemInfoPageListViewController.FlattenIngredients(Item, ListViewElements);
             ItemPerSec.Text = Item.Name + "/s";
+            amountOfMAchinesMainItemBlock.Text = "The amount of machines that craft " + Item.Name + ":";
         }
 
         private void Go_Back(object sender, RoutedEventArgs e)
@@ -47,15 +48,18 @@ namespace FactorioHelper.Pages
             }
             else
             {
-                double allMachinesCombined = targetAmountPerSec/Item.AmountPerSec/craftingMultiplier;
+                double mainItemAmountOfMachines = Math.Round(targetAmountPerSec / Item.AmountPerSec /craftingMultiplier, 2, MidpointRounding.AwayFromZero);
+                double allMachinesCombined = mainItemAmountOfMachines;
                 foreach (var element in ListViewElements)
                 {
-                    element.MachinesNeeded = Math.Round(element.AmountNeededCombined / element.Item.AmountPerSec / craftingMultiplier * targetAmountPerSec, 2, MidpointRounding.AwayFromZero);
-                    element.ItemNeededPerSec = Math.Round(element.AmountNeededCombined / Item.TimeToCraft * targetAmountPerSec, 2, MidpointRounding.AwayFromZero);
+                    element.MachinesNeeded = Math.Round(((element.AmountNeededCombined / element.Item.AmountPerSec) / craftingMultiplier) * (targetAmountPerSec/Item.AmountCrafted), 2, MidpointRounding.AwayFromZero);
+                    element.ItemNeededPerSec = Math.Round(element.AmountNeededCombined / (Item.TimeToCraft * targetAmountPerSec), 2, MidpointRounding.AwayFromZero);
                     allMachinesCombined += element.MachinesNeeded;
                 }
                 ItemInfoListView.ItemsSource = ListViewElements;
+                allMachinesCombined = Math.Round(allMachinesCombined, 2, MidpointRounding.AwayFromZero);
                 AllMachines.Text = allMachinesCombined.ToString();
+                mainItemsMachinesBox.Text = mainItemAmountOfMachines.ToString();
             }
         }
 

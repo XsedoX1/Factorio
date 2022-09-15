@@ -57,7 +57,22 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Margin="0,10,0,0" Grid.Row="2" Content="Add Item" HorizontalAlignment="Center" Click="Add_Item_Button"></Button>
+
+        <Grid Name="BottomRow" Grid.Row="2" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Items' database path:" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Center"></TextBlock>
+            <TextBox Margin="0,10,10,0" Grid.Column="1" HorizontalAlignment="Right" IsReadOnly="True" Name="itemsPathBox"></TextBox>
+            <Button Margin="0,10,10,0" Grid.Column="2" HorizontalAlignment="Right" Content="Set items' database directory" Click="Set_Directory_Button"></Button>
+            <Button Margin="0,10,0,0" Grid.Column="3" Content="Add Item" HorizontalAlignment="Right" Click="Add_Item_Button"></Button>
+
+        </Grid>
+
     </Grid>
 
 </Page>

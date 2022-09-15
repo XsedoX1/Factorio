@@ -1,38 +1,43 @@
-﻿using FactorioHelper.Items;
+﻿using FactorioHelper.Data;
+using FactorioHelper.Items;
 using Newtonsoft.Json;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using Constants = FactorioHelper.Data.Constants;
 
 namespace FactorioHelper.Logic;
 
 public static class JsonController
 {
 
-    public static void Serializer(Item item)
+    public static void SerializeItem(Item item)
     {
         var readItem = JsonConvert.SerializeObject(item);
-        if (!Directory.Exists(Constants.PROJECT_DIR + "ItemsDB/"))
-            Directory.CreateDirectory(Constants.PROJECT_DIR + "ItemsDB/");
+        if (!Directory.Exists(Settings.Path))
+            Directory.CreateDirectory(Settings.Path);
 
-        if (!File.Exists(Constants.PROJECT_DIR + "ItemsDB/" + item.Id + ".json"))
-            File.WriteAllText(Constants.PROJECT_DIR + "ItemsDB/" + item.Id + ".json", readItem);
+        if (!File.Exists(Settings.Path + item.Id + ".json"))
+            File.WriteAllText(Settings.Path + item.Id + ".json", readItem);
     }
 
-    public static ObservableCollection<Item> Deserializer()
+    public static ObservableCollection<Item> DeserializeItems()
     {
         var listOfItems = new ObservableCollection<Item>();
 
-        if (!Directory.Exists(Constants.PROJECT_DIR + "ItemsDB/"))
-            Directory.CreateDirectory(Constants.PROJECT_DIR + "ItemsDB/");
+        if (!Directory.Exists(Settings.Path))
+            Directory.CreateDirectory(Settings.Path);
 
-        var files = Directory.GetFiles(Constants.PROJECT_DIR + "ItemsDB/");
+        var files = Directory.GetFiles(Settings.Path);
 
         foreach (var path in files)
         {
+            FileInfo fi = new FileInfo(path);
+            if (fi.Extension != ".json")
+                continue;
+
             var serializedItem = File.ReadAllText(path);
             var deserializedItem = JsonConvert.DeserializeObject<Item>(serializedItem);
-            if (deserializedItem != null) listOfItems.Add(deserializedItem);
+            if (deserializedItem is not null) listOfItems.Add(deserializedItem);
         }
 
         return listOfItems;

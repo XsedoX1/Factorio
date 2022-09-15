@@ -33,6 +33,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Border BorderBrush="Black" Grid.Row="0" BorderThickness="2" CornerRadius="10" Padding="10" Margin="0,10,10,0">
@@ -95,6 +96,18 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
+                        <TextBlock Name="amountOfMAchinesMainItemBlock" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                        <TextBox Grid.Column="1" IsReadOnly="True" Margin="10,0,0,0" Name="mainItemsMachinesBox" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    </Grid>
+
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Grid.Row="3" Padding="10" Margin="0,10,10,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
                         <TextBlock Text="Amount of machines needed combined: " VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
                         <TextBox Grid.Column="1" IsReadOnly="True" Margin="10,0,0,0" Name="AllMachines" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </Grid>
@@ -127,8 +140,8 @@
                                     </TextBlock>
 
                                     <TextBlock HorizontalAlignment="Right" Margin="0, 0, 0, 10" Grid.Column="1" VerticalAlignment="Center">
-                                    <Run Text="Amount needed/s: "></Run>
-                                    <Run Text="{Binding ItemNeededPerSec}"></Run>
+                                        <Run Text="Amount needed/s: "></Run>
+                                        <Run Text="{Binding ItemNeededPerSec}"></Run>
                                     </TextBlock>
 
                                 </Grid>
@@ -136,8 +149,8 @@
                                 <Grid Grid.Row="1" Name="SecondRow" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                                     <TextBlock HorizontalAlignment="Left" Margin="10, 0, 0, 0" Grid.Column="1" VerticalAlignment="Center">
-                                <Run Text="Machines Needed: "></Run>
-                                <Run Text="{Binding MachinesNeeded}"></Run>
+                                        <Run Text="Machines Needed: "></Run>
+                                        <Run Text="{Binding MachinesNeeded}"></Run>
                                     </TextBlock>
                                 </Grid>
                             </Grid>

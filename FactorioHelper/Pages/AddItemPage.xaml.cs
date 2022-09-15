@@ -23,6 +23,8 @@ namespace FactorioHelper.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            AddItemPageListViewController.ListOfAvailableItems.Clear();
+            AddItemPageListViewController.ListOfIngredients.Clear();
 
             AddItemPageListViewController.ListOfAvailableItems = MainPageListViewController.ListOfItems;
             AvailableItemsComboBox.ItemsSource = AddItemPageListViewController.ListOfAvailableItems;
