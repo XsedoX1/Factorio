@@ -1,4 +1,4 @@
-﻿using FactorioHelper.Items;
+﻿using FactorioHelper.Models;
 using System;
 using System.ComponentModel;
 
@@ -8,8 +8,7 @@ namespace FactorioHelper.Logic
     {
         public Item Item { get; set; }
         private double machinesNeeded;
-        private double itemNeededPerSec;
-        public double AmountNeededCombined { set; get; }
+        private double amountNeededCombinedPerSec;
         public double MachinesNeeded
         {
             get { return machinesNeeded; }
@@ -21,13 +20,13 @@ namespace FactorioHelper.Logic
             }
         }
 
-        public double ItemNeededPerSec
+        public double AmountNeededCombinedPerSec
         {
-            get { return itemNeededPerSec; }
+            get { return amountNeededCombinedPerSec; }
             set
             {
-                if (itemNeededPerSec == value) return;
-                itemNeededPerSec = value;
+                if (amountNeededCombinedPerSec == value) return;
+                amountNeededCombinedPerSec = Math.Round(value, 2, MidpointRounding.AwayFromZero);
                 NotifyPropertyChanged();
             }
         }
@@ -37,7 +36,7 @@ namespace FactorioHelper.Logic
         public SummedIngredient(Item item, double amountNeededCombined)
         {
             Item = item;
-            AmountNeededCombined = amountNeededCombined;
+            AmountNeededCombinedPerSec = amountNeededCombined;
         }
         public SummedIngredient() { }
 
@@ -52,12 +51,12 @@ namespace FactorioHelper.Logic
             if (Object.ReferenceEquals(this, other)) return true;
             if (this.GetType != other.GetType) return false;
 
-            return (Item == other.Item) && (AmountNeededCombined == other.AmountNeededCombined);
+            return (Item == other.Item) && (AmountNeededCombinedPerSec == other.AmountNeededCombinedPerSec);
         }
 
         public override int GetHashCode()
         {
-            return (Item, AmountNeededCombined).GetHashCode();
+            return (Item, AmountNeededCombinedPerSec).GetHashCode();
         }
 
         public static bool operator ==(SummedIngredient left, SummedIngredient right)

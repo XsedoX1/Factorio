@@ -1,14 +1,13 @@
-﻿using FactorioHelper.Items;
-using FactorioHelper.Logic;
+﻿using FactorioHelper.Logic;
+using FactorioHelper.Models;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace FactorioHelper.Pages
 {
-
-
     public sealed partial class AddItemPage : Page
     {
+        private Item item;
 
         public AddItemPage()
         {
@@ -23,24 +22,27 @@ namespace FactorioHelper.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+            item = null;
             AddItemPageListViewController.ListOfAvailableItems.Clear();
             AddItemPageListViewController.ListOfIngredients.Clear();
 
-            AddItemPageListViewController.ListOfAvailableItems = MainPageListViewController.ListOfItems;
+            AddItemPageListViewController.ListOfAvailableItems = SQLiteDBInterace.ItemsList;
             AvailableItemsComboBox.ItemsSource = AddItemPageListViewController.ListOfAvailableItems;
             AddedIngredients.ItemsSource = AddItemPageListViewController.ListOfIngredients;
 
             if (e.Parameter is Item)
             {
-                Item item = e.Parameter as Item;
+                item = e.Parameter as Item;
 
-
+                AddItemPageListViewController.ListOfAvailableItems.Remove(item);
                 foreach (var ingredient in item.Ingredients)
                 {
                     AddItemPageListViewController.ListOfIngredients.Add(ingredient);
                     AddItemPageListViewController.ListOfAvailableItems.Remove(ingredient.Item);
                 }
 
+                machineChooser.SelectedIndex = item.IsAssemblingMachine;
                 NameBox.Text = item.Name;
                 TimeBox.Text = item.TimeToCraft.ToString();
                 AmountCraftedBox.Text = item.AmountCrafted.ToString();
@@ -99,13 +101,34 @@ namespace FactorioHelper.Pages
             }
             else
             {
-                Item item = new Item(NameBox.Text, time, AmountCraftedInt, AddItemPageListViewController.ListOfIngredients);
+                if(item is not null)
+                {
+                    using(var db = new SQLiteContext())
+                    {
+                        db.Items.Attach(item);
+                        foreach (Ingredient ingredient in AddItemPageListViewController.ListOfIngredients)
+                            db.Items.Attach(ingredient.Item);
 
-                MainPageListViewController.AddEdit_Whole_Item(item);
+                        item.Name = NameBox.Text;
+                        item.TimeToCraft = time;
+                        item.AmountCrafted = AmountCraftedInt;
+                        item.IsAssemblingMachine = machineChooser.SelectedIndex;
+                        item.Ingredients = AddItemPageListViewController.ListOfIngredients;
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    item = new Item(NameBox.Text, time, AmountCraftedInt, machineChooser.SelectedIndex, AddItemPageListViewController.ListOfIngredients);
+                    SQLiteDBInterace.SaveItem(item);
+                }
+                
 
+                
                 this.Frame.GoBack();
 
             }
         }
+
     }
 }

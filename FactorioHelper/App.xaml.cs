@@ -1,24 +1,33 @@
-﻿using FactorioHelper.Data;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using FactorioHelper.Logic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
-
 
 
 namespace FactorioHelper
 {
     public partial class App : Application
     {
+        
         public Window Window { get; set; }
         public App()
         {
             this.InitializeComponent();
-            if (Settings.Path is null)
-                Settings.Path = Constants.PROJECT_DIR;
+            //SQLiteDataInterface.InitializeDatabase();
+
+            
         }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             Window = new MainWindow();
             Window.Activate();
+
+            using(var db= new SQLiteContext())
+            {
+                db.Database.Migrate();
+            }
             
         }
     }

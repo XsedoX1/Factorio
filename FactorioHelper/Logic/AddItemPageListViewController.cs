@@ -1,4 +1,4 @@
-﻿using FactorioHelper.Items;
+﻿using FactorioHelper.Models;
 using System.Collections.ObjectModel;
 
 namespace FactorioHelper.Logic
@@ -12,6 +12,7 @@ namespace FactorioHelper.Logic
 
         public static void Add_Button(Item item, int amountNeeded, double timeNeededForMainItem)
         {
+           
             var ingredient = new Ingredient(amountNeeded, item, timeNeededForMainItem);
             if (ingredient != null)
             {

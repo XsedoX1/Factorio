@@ -1,9 +1,11 @@
-﻿using FactorioHelper.Data;
-using FactorioHelper.Items;
+﻿
 using FactorioHelper.Logic;
+using FactorioHelper.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using System;
+using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 
 namespace FactorioHelper.Pages
@@ -15,15 +17,25 @@ namespace FactorioHelper.Pages
         {
             InitializeComponent();
 
-            itemsPathBox.Text = Settings.Path;
+            //itemsPathBox.Text = Settings.Path;    CHOOSING DIRECTORY NOT USED
+        }
 
-            MainPageListViewController.Updater();
-            MainListView.ItemsSource = MainPageListViewController.ListOfItems;
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            MainListView.ItemsSource = SQLiteDBInterace.ItemsList;
+
+
         }
 
         private void Remove_Button(object sender, RoutedEventArgs e)
         {
-            MainPageListViewController.Remove_Button(sender, e);
+            var button = sender as Button;
+            Item item = button.DataContext as Item;
+            if (item == null) return;
+            SQLiteDBInterace.RemoveItem(item);
+
         }
 
         private void Edit_Button(object sender, RoutedEventArgs e)
@@ -41,7 +53,7 @@ namespace FactorioHelper.Pages
         private void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             Item clickedItem = e.ClickedItem as Item;
-            if (clickedItem.Ingredients.Count > 0)
+            if (clickedItem.Ingredients is not null && clickedItem.Ingredients.Count > 0)
                 this.Frame.Navigate(typeof(ItemInfoPage), clickedItem);
             else
             {
@@ -61,12 +73,13 @@ namespace FactorioHelper.Pages
             folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
 
             Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
-            if(folder!=null)
+            if (folder != null)
             {
-                Settings.Path = folder.Path;
-                itemsPathBox.Text = Settings.Path;
+                //itemsPathBox.Text = Settings.Path;    CHOOSING DIRECTORY NOT USED
             }
 
         }
+
+
     }
 }

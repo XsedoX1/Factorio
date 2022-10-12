@@ -141,7 +141,7 @@
 
                                     <TextBlock HorizontalAlignment="Right" Margin="0, 0, 0, 10" Grid.Column="1" VerticalAlignment="Center">
                                         <Run Text="Amount needed/s: "></Run>
-                                        <Run Text="{Binding ItemNeededPerSec}"></Run>
+                                        <Run Text="{Binding AmountNeededCombinedPerSec}"></Run>
                                     </TextBlock>
 
                                 </Grid>

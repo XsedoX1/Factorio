@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:FactorioHelper"
-      xmlns:items="clr-namespace:FactorioHelper.Items"
+      xmlns:items="clr-namespace:FactorioHelper.Items" 
+      xmlns:logic="using:FactorioHelper.Logic" d:DataContext="{d:DesignInstance Type=logic:SummedIngredient}"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -29,7 +30,6 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -94,9 +94,28 @@
             </TextBox>
 
 
+            <TextBlock 
+                FontWeight="Bold" 
+                Margin="0,10,10,0" 
+                Grid.Row="3" Grid.Column="0" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left"                 
+                Text="Is this item craftable in Assembling Machine?" >
+            </TextBlock>
+
+            <RadioButtons 
+                Grid.Row="3" Grid.Column="1"
+                MaxColumns="2"
+                SelectedIndex="1"
+                HorizontalAlignment="Stretch" 
+                Name="machineChooser">
+
+                <x:String>No</x:String>
+                <x:String>Yes</x:String>
+            </RadioButtons>
 
 
-                <TextBlock FontWeight="Bold" Margin="0,10,10,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Adding Ingredients:"></TextBlock>
+            <TextBlock FontWeight="Bold" Margin="0,10,10,0" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Adding Ingredients:"></TextBlock>
 
             <Grid Margin="0,10,0,0" Grid.Row="4" Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -151,27 +170,28 @@
 
             </Grid>
 
-            <TextBlock FontWeight="Bold" Margin="0,10,10,0" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Added Ingredients:"></TextBlock>
 
-            <ListView Name="AddedIngredients" Grid.Row="6" Grid.Column="1" IsItemClickEnabled="False" SelectionMode="None">
+            <TextBlock FontWeight="Bold" Margin="0,10,10,0" Grid.Row="5" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Text="Added Ingredients:"></TextBlock>
+
+            <ListView Margin="0, 11, 0, 0" Name="AddedIngredients" Grid.Row="5" Grid.Column="1" IsItemClickEnabled="False" SelectionMode="None" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                 <ListView.HeaderTemplate>
                     <DataTemplate>
-                        <Grid >
+                        <Grid Margin="20,0,20,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="Item Name" ></TextBlock>
-                            <TextBlock Grid.Column="1" Text="Amount Needed" ></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="0" Text="Item Name:" ></TextBlock>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text="Amount Needed:" ></TextBlock>
 
                         </Grid>
                     </DataTemplate>
                 </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="0,5,0,5">
+                        <Border HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Padding="10" Margin="0,5,0,5">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -180,8 +200,8 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding Item.Name}" VerticalAlignment="Center"></TextBlock>
-                                <TextBlock Margin="0,0,5,0" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center">
+                                <TextBlock FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Center" Text="{Binding Item.Name}" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock Margin="0,0,5,0" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">
                                     <Run Text="{Binding AmountNeeded}"></Run>
                                 </TextBlock>
                                 <Button Grid.Column="2" HorizontalAlignment="Right" >

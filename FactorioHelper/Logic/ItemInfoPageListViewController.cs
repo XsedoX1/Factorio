@@ -1,12 +1,11 @@
-﻿using FactorioHelper.Items;
-using System;
+﻿using FactorioHelper.Models;
 using System.Collections.ObjectModel;
 
 namespace FactorioHelper.Logic
 {
     public static class ItemInfoPageListViewController
     {
-        public static void FlattenIngredients(Item item, ObservableCollection<SummedIngredient> _ingredients, double multiplier = 1)
+        public static void FlattenIngredients(Item item, ObservableCollection<SummedIngredient> _ingredients, double multiplier)
         {
             foreach (var ingredient in item.Ingredients)
             {
@@ -21,7 +20,7 @@ namespace FactorioHelper.Logic
                         {
                             if (addedIngredient.Item == ingredient.Item)
                             {
-                                SummedIngredient summedIngredient = new SummedIngredient(ingredient.Item, (addedIngredient.AmountNeededCombined + Math.Round((ingredient.AmountNeeded * multiplier), 3, MidpointRounding.AwayFromZero)));
+                                SummedIngredient summedIngredient = new SummedIngredient(ingredient.Item, addedIngredient.AmountNeededCombinedPerSec + ingredient.AmountNeededPerSec * multiplier);
                                 _ingredients.Add(summedIngredient);
                                 toRemove = addedIngredient;
                                 added = true;
@@ -31,7 +30,7 @@ namespace FactorioHelper.Logic
                     }
                     if (!added)
                     {
-                        SummedIngredient summedIngredient = new SummedIngredient(ingredient.Item, ingredient.AmountNeeded * multiplier);
+                        SummedIngredient summedIngredient = new SummedIngredient(ingredient.Item, ingredient.AmountNeededPerSec * multiplier);
                         _ingredients.Add(summedIngredient);
                     }
                     else
@@ -39,7 +38,7 @@ namespace FactorioHelper.Logic
 
 
                     if (ingredient.Item.Ingredients.Count > 0)
-                        FlattenIngredients(ingredient.Item, _ingredients, ingredient.AmountNeeded * multiplier);
+                        FlattenIngredients(ingredient.Item, _ingredients, ingredient.AmountNeededPerSec/ingredient.Item.AmountPerSec);
                 }
             }
 

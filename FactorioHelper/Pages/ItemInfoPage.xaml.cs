@@ -1,5 +1,5 @@
-﻿using FactorioHelper.Items;
-using FactorioHelper.Logic;
+﻿using FactorioHelper.Logic;
+using FactorioHelper.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -24,8 +24,8 @@ namespace FactorioHelper.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Item = e.Parameter as Item;
+            ItemInfoListView.ItemsSource = ListViewElements;
             TitleItem.Text = Item.Name;
-            ItemInfoPageListViewController.FlattenIngredients(Item, ListViewElements);
             ItemPerSec.Text = Item.Name + "/s";
             amountOfMAchinesMainItemBlock.Text = "The amount of machines that craft " + Item.Name + ":";
         }
@@ -48,18 +48,32 @@ namespace FactorioHelper.Pages
             }
             else
             {
-                double mainItemAmountOfMachines = Math.Round(targetAmountPerSec / Item.AmountPerSec /craftingMultiplier, 2, MidpointRounding.AwayFromZero);
+                double mainItemAmountOfMachines;
+                if (Item.IsAssemblingMachine==1)
+                    mainItemAmountOfMachines = targetAmountPerSec / Item.AmountPerSec/craftingMultiplier;
+                else
+                    mainItemAmountOfMachines = targetAmountPerSec / Item.AmountPerSec;
+
                 double allMachinesCombined = mainItemAmountOfMachines;
+                ItemInfoPageListViewController.FlattenIngredients(Item, ListViewElements, mainItemAmountOfMachines);
+
                 foreach (var element in ListViewElements)
                 {
-                    element.MachinesNeeded = Math.Round(((element.AmountNeededCombined / element.Item.AmountPerSec) / craftingMultiplier) * (targetAmountPerSec/Item.AmountCrafted), 2, MidpointRounding.AwayFromZero);
-                    element.ItemNeededPerSec = Math.Round(element.AmountNeededCombined / (Item.TimeToCraft * targetAmountPerSec), 2, MidpointRounding.AwayFromZero);
-                    allMachinesCombined += element.MachinesNeeded;
+                    if(element.Item.IsAssemblingMachine==1)
+                    {
+                        element.MachinesNeeded = Math.Round(element.AmountNeededCombinedPerSec / element.Item.AmountPerSec / craftingMultiplier, 2, MidpointRounding.AwayFromZero);
+                        allMachinesCombined += element.AmountNeededCombinedPerSec / element.Item.AmountPerSec / craftingMultiplier;
+                    }
+                    else
+                    {
+                        element.MachinesNeeded = Math.Round(element.AmountNeededCombinedPerSec / element.Item.AmountPerSec, 2, MidpointRounding.AwayFromZero);
+                        allMachinesCombined += element.AmountNeededCombinedPerSec / element.Item.AmountPerSec;
+                    }
                 }
-                ItemInfoListView.ItemsSource = ListViewElements;
+
                 allMachinesCombined = Math.Round(allMachinesCombined, 2, MidpointRounding.AwayFromZero);
                 AllMachines.Text = allMachinesCombined.ToString();
-                mainItemsMachinesBox.Text = mainItemAmountOfMachines.ToString();
+                mainItemsMachinesBox.Text = Math.Round(mainItemAmountOfMachines,2,MidpointRounding.AwayFromZero).ToString();
             }
         }
 
