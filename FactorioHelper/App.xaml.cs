@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using FactorioHelper.Logic;
+﻿using FactorioHelper.Logic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
@@ -14,7 +13,6 @@ namespace FactorioHelper
         public App()
         {
             this.InitializeComponent();
-            //SQLiteDataInterface.InitializeDatabase();
 
             
         }

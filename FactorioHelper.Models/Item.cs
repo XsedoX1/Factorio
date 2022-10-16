@@ -8,11 +8,12 @@ namespace FactorioHelper.Models
 
         public double TimeToCraft { get; set; }
 
-        public override bool Equals(object obj) => Equals(obj as Item);
+        public override bool Equals(object? obj) => Equals(obj as Item);
+
         public override int GetHashCode() => (ItemId, TimeToCraft, AmountCrafted).GetHashCode();
 
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
 
         public int AmountCrafted { get; set; }
@@ -20,14 +21,14 @@ namespace FactorioHelper.Models
         public int IsAssemblingMachine { get; set; }
 
         
-        public ObservableCollection<Ingredient> Ingredients { get; set; } = new();
+        public ObservableCollection<Ingredient>? Ingredients { get; set; } = new();
 
 
         public double AmountPerSec { get; set; }
 
         
         public Item() { }
-        public Item(string name, double timeToCraft, int amountCrafted, int isAssemblingMachine, ObservableCollection<Ingredient> ingredients = null)
+        public Item(string name, double timeToCraft, int amountCrafted, int isAssemblingMachine, ObservableCollection<Ingredient>? ingredients = null)
         {
             TimeToCraft = timeToCraft;
             AmountCrafted = amountCrafted;
@@ -37,7 +38,7 @@ namespace FactorioHelper.Models
             IsAssemblingMachine = isAssemblingMachine;
         }
 
-        public bool Equals(Item other)
+        public bool Equals(Item? other)
         {
             if (other == null) return false;
             if (Object.ReferenceEquals(this, other)) return true;
@@ -46,7 +47,7 @@ namespace FactorioHelper.Models
             return (ItemId == other.ItemId) && (AmountCrafted == other.AmountCrafted) && (TimeToCraft == other.TimeToCraft);
         }
 
-        public static bool operator ==(Item left, Item right)
+        public static bool operator ==(Item? left, Item? right)
         {
             if (left is null)
             {

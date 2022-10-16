@@ -5,14 +5,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FactorioHelper.Logic
 {
     public class SQLiteContext : DbContext
     {
-        public DbSet<Item>  Items { get; set; }
-        public DbSet<Ingredient> Ingredients {get; set; }
+        public DbSet<Item>?  Items { get; set; }
+        public DbSet<Ingredient>? Ingredients {get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,7 +51,7 @@ namespace FactorioHelper.Logic
 
         }
 
-        public string DbPath { get; set; }
+        public string? DbPath { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

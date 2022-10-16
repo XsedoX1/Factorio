@@ -1,12 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-	  <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Configurations>Debug;Release;test</Configurations>
+	  <PlatformTarget>x64</PlatformTarget>
+    <Configurations>Debug;Release</Configurations>
+	  <GenerateLibraryLayout>true</GenerateLibraryLayout>
+	  <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+	  <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

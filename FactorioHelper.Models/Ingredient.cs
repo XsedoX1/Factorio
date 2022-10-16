@@ -9,7 +9,7 @@ public class Ingredient : IEquatable<Ingredient>
     public long MainItemId { get; set; }
 
     public long ItemId { get; set; }
-    public Item Item { get; set; }
+    public Item? Item { get; set; }
 
     public int AmountNeeded { get; set; }
 
@@ -20,7 +20,7 @@ public class Ingredient : IEquatable<Ingredient>
     
 
 
-    public override bool Equals(object obj) => this.Equals(obj as Ingredient);
+    public override bool Equals(object? obj) => this.Equals(obj as Ingredient);
 
     public Ingredient() { }
     public Ingredient(int amountNeeded, Item item, double timeToCraftMainItem)
@@ -34,7 +34,7 @@ public class Ingredient : IEquatable<Ingredient>
 
 
 
-    public bool Equals(Ingredient other)
+    public bool Equals(Ingredient? other)
     {
         if (other == null) return false;
         if (Object.ReferenceEquals(this, other)) return true;
@@ -45,7 +45,7 @@ public class Ingredient : IEquatable<Ingredient>
 
     public override int GetHashCode() => (this.AmountNeeded, this.TimeToCraftMainItem, this.Item).GetHashCode();
 
-    public static bool operator ==(Ingredient left, Ingredient right)
+    public static bool operator ==(Ingredient? left, Ingredient? right)
     {
         if (left is null)
         {
@@ -56,6 +56,6 @@ public class Ingredient : IEquatable<Ingredient>
         return left.Equals(right);
     }
 
-    public static bool operator !=(Ingredient left, Ingredient right) => !(left == right);
+    public static bool operator !=(Ingredient? left, Ingredient? right) => !(left == right);
 
 }
