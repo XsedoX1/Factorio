@@ -1,4 +1,4 @@
-﻿using FactorioHelper.Models;
+﻿using FactorioHelper.Models.Models;
 using System.Collections.ObjectModel;
 
 namespace FactorioHelper.Logic

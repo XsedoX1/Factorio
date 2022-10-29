@@ -1,22 +1,23 @@
-﻿using Microsoft.UI.Xaml;
+﻿using FactorioHelper.Helpers;
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
+using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace FactorioHelper
 {
-    public sealed partial class MainWindow : Window
+    public sealed partial class MainWindow : WindowEx
     {
 
         public MainWindow()
         {
 
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            
+            InitializeComponent();
 
-            Title = $"FactorioHelper {versionInfo.FileVersion }";
-
-            this.InitializeComponent();
-            MainFrame.Navigate(typeof(Pages.MainPage));
+            AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/icon.ico"));
+            Content = null;
+            Title = "AppDisplayName".GetLocalized();
         }
 
     }
